@@ -18,7 +18,6 @@ const killserver = require('./methods/killServer.js');
 const restartserver = require('./methods/restartServer.js');
 const sendcommand = require('./methods/sendCommand.js');
 
-// СУКА ПОЧЕМУ ТУТ ЭТОГО НЕ БЫЛО?!  by nikon
 class Client {
 	/**
  	*
