@@ -59,6 +59,16 @@ class Client {
 		return Req.getRequest('GetServerInfo', ServerID);
 	}
 
+	getServerStatus(ServerID) {
+		const Req = new Request(this.host, this.key);
+		return Req.getRequest('GetServerStatus', ServerID);
+	}
+
+	getServerStats(ServerID) {
+		const Req = new Request(this.host, this.key);
+		return Req.getRequest('GetServerStats', ServerID);
+	}
+
 	isOwner(ServerID) {
 		const Req = new Request(this.host, this.key);
 		return Req.getRequest('IsOwner', ServerID);
@@ -140,7 +150,7 @@ function fastLogin(HOST, KEY) {
 
 
 module.exports = {
-	Client, 
+	Client,
 
 	login: login,
 	fastLogin: fastLogin,
