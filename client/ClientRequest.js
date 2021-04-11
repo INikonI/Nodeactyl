@@ -20,10 +20,13 @@ class Request {
 				return response.data.data;
 			}
 			else if(request == 'GetServerInfo') {
-				return response.data;
+				return response.data.attributes;
 			}
 			else if (request == 'GetServerStatus') {
 				return response.data.attributes.state;
+			}
+			else if (request == 'GetServerStats') {
+				return response.data.attributes;
 			}
 			else if (request == 'IsOwner') {
 				return response.data.attributes.server_owner;
@@ -82,20 +85,20 @@ class Request {
 	}
 }
 
-const utilization = ['GetServerStatus', 'GetCPUCores', 'GetCPUUsage', 'GetRAMUsage', 'GetDiskUsage'];
+const utilization = ['GetServerStatus', 'GetServerStats', 'GetCPUCores', 'GetCPUUsage', 'GetRAMUsage', 'GetDiskUsage'];
 const info = ['GetServerInfo', 'IsOwner'];
 const powerAction = ['StartServer', 'StopServer', 'KillServer', 'RestartServer'];
 function getUrl(request, host, data) {
 	if (request == 'GetAllServers') {
 		return host + '/api/client';
 	}
-	else if (info.indexOf(request) > -1) {
+	else if (info.includes(request)) {
 		return host + '/api/client/servers/' + data;
 	}
-	else if (utilization.indexOf(request) > -1) {
+	else if (utilization.includes(request)) {
 		return host + '/api/client/servers/' + data + '/utilization';
 	}
-	else if (powerAction.indexOf(request) > -1) {
+	else if (powerAction.includes(request)) {
 		return host + '/api/client/servers/' + data + '/power';
 	}
 	else if (request == 'SendCommand') {
